@@ -1,14 +1,4 @@
-import { LucideIcon } from "lucide-react";
-
-interface FeatureCardProps {
-  title: string;
-  icon: LucideIcon;
-  color: string;
-  onClick: () => void;
-  isCompact?: boolean;
-}
-
-const FeatureCard = ({ title, icon: Icon, color, onClick, isCompact = false }: FeatureCardProps) => {
+const FeatureCard = ({ title, icon: Icon, color, onClick, isCompact = false }) => {
   return (
     <div
       onClick={onClick}
