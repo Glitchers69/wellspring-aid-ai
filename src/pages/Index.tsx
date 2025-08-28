@@ -1,13 +1,23 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import WellbeingDashboard from "@/components/WellbeingDashboard";
+import { useEffect } from "react";
 
 const Index = () => {
+  useEffect(() => {
+    // Set page title and meta description for SEO
+    document.title = "Student Wellbeing Hub - Mental Health Support & Tools";
+    
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute("content", 
+        "Comprehensive student wellbeing platform with AI chatbot, meditation, breathing exercises, study tools, and mental health support designed for academic success."
+      );
+    }
+  }, []);
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
-    </div>
+    <main>
+      <WellbeingDashboard />
+    </main>
   );
 };
 

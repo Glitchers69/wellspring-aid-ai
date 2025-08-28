@@ -2,41 +2,60 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Student Wellbeing App Design System - Calming & Supportive */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Calming color palette for student wellbeing */
+    --background: 210 20% 98%;
+    --foreground: 215 25% 27%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    /* Wellbeing primary colors */
+    --primary: 200 85% 60%;
+    --primary-foreground: 210 20% 98%;
+    --primary-glow: 200 85% 75%;
+    
+    /* Supportive secondary colors */
+    --secondary: 160 60% 45%;
+    --secondary-foreground: 210 20% 98%;
+    --secondary-glow: 160 60% 65%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    /* Card and surface colors */
+    --card: 210 20% 99%;
+    --card-foreground: 215 25% 27%;
+    --card-hover: 210 25% 96%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Accent colors for features */
+    --accent-breathing: 190 70% 55%;
+    --accent-meditation: 270 60% 65%;
+    --accent-study: 45 85% 60%;
+    --accent-exercise: 120 50% 55%;
+    --accent-journal: 320 45% 65%;
+    --accent-games: 30 80% 65%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Interactive elements */
+    --muted: 210 15% 93%;
+    --muted-foreground: 215 15% 55%;
+    --border: 210 15% 90%;
+    --input: 210 15% 95%;
+    --ring: 200 85% 60%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Gradients for wellbeing mood */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    --gradient-secondary: linear-gradient(135deg, hsl(var(--secondary)), hsl(var(--secondary-glow)));
+    --gradient-calm: linear-gradient(180deg, hsl(210 30% 98%), hsl(200 25% 95%));
+    --gradient-feature: linear-gradient(135deg, hsl(210 20% 99%), hsl(200 15% 96%));
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Shadows for depth */
+    --shadow-card: 0 4px 20px -2px hsl(200 25% 25% / 0.08);
+    --shadow-feature: 0 8px 30px -4px hsl(200 25% 25% / 0.12);
+    --shadow-chat: 0 10px 40px -8px hsl(200 25% 25% / 0.15);
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* Animations */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
+    --radius: 1rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -100,6 +119,80 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+    background: var(--gradient-calm);
+    min-height: 100vh;
+  }
+}
+
+@layer components {
+  /* Chat Animation Classes */
+  .chat-top {
+    @apply fixed top-6 left-1/2 transform -translate-x-1/2 z-50;
+    transition: var(--transition-bounce);
+  }
+  
+  .chat-bottom {
+    @apply fixed bottom-6 right-6 z-50;
+    transition: var(--transition-bounce);
+  }
+
+  /* Feature Box Layouts */
+  .features-grid {
+    @apply grid grid-cols-3 gap-6 max-w-4xl mx-auto;
+    transition: var(--transition-smooth);
+  }
+  
+  .features-horizontal {
+    @apply flex flex-wrap gap-4 justify-center max-w-6xl mx-auto;
+    transition: var(--transition-smooth);
+  }
+  
+  .features-horizontal .feature-card {
+    @apply w-32 h-32;
+    transition: var(--transition-smooth);
+  }
+
+  /* Feature Cards */
+  .feature-card {
+    @apply relative p-6 rounded-3xl cursor-pointer;
+    background: var(--gradient-feature);
+    box-shadow: var(--shadow-feature);
+    transition: var(--transition-smooth);
+  }
+  
+  .feature-card:hover {
+    @apply transform -translate-y-1;
+    background: hsl(var(--card-hover));
+    box-shadow: var(--shadow-chat);
+  }
+
+  /* Chat Interface */
+  .chat-container {
+    @apply bg-card rounded-2xl p-4;
+    box-shadow: var(--shadow-chat);
+    backdrop-filter: blur(10px);
+    border: 1px solid hsl(var(--border));
+  }
+
+  /* Breathing Animation */
+  .breathing-circle {
+    @apply rounded-full;
+    animation: breathe 4s ease-in-out infinite;
+  }
+  
+  @keyframes breathe {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+  }
+
+  /* Feature Icon Styles */
+  .feature-icon {
+    @apply w-8 h-8 mb-3 mx-auto;
+    transition: var(--transition-smooth);
+  }
+  
+  .feature-card:hover .feature-icon {
+    @apply transform scale-110;
   }
 }
