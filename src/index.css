@@ -132,8 +132,8 @@
     transition: var(--transition-bounce);
   }
   
-  .chat-bottom {
-    @apply fixed bottom-6 right-6 z-50;
+  .chat-fullscreen {
+    @apply fixed inset-0 z-50 flex flex-col;
     transition: var(--transition-bounce);
   }
 
@@ -144,8 +144,9 @@
   }
   
   .features-horizontal {
-    @apply flex flex-wrap gap-4 justify-center max-w-6xl mx-auto;
+    @apply flex flex-wrap gap-4 justify-center max-w-6xl mx-auto px-4;
     transition: var(--transition-smooth);
+    margin-top: 1rem;
   }
   
   .features-horizontal .feature-card {

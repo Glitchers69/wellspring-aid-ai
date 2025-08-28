@@ -61,17 +61,32 @@ const WellbeingDashboard = () => {
       <div className="absolute bottom-20 left-20 w-96 h-96 bg-secondary/10 rounded-full blur-3xl"></div>
 
       {/* Chat Interface */}
-      <div className={isChatExpanded ? "chat-bottom" : "chat-top"}>
+      <div className={isChatExpanded ? "chat-fullscreen" : "chat-top"}>
         <ChatInterface
           isExpanded={isChatExpanded}
           onToggle={() => setIsChatExpanded(!isChatExpanded)}
         />
+        
+        {/* Feature boxes when chat is expanded */}
+        {isChatExpanded && (
+          <div className="features-horizontal bg-background/95 backdrop-blur-sm border-t border-border">
+            {features.map((feature, index) => (
+              <FeatureCard
+                key={index}
+                title={feature.title}
+                icon={feature.icon}
+                color={feature.color}
+                onClick={feature.onClick}
+                isCompact={true}
+              />
+            ))}
+          </div>
+        )}
       </div>
 
-      {/* Main Content */}
-      <div className={`px-8 transition-all duration-500 ${
-        isChatExpanded ? "pt-8 pb-24" : "pt-32 pb-16"
-      }`}>
+      {/* Main Content - only show when chat is not expanded */}
+      {!isChatExpanded && (
+        <div className="px-8 pt-32 pb-16 transition-all duration-500">
         {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-foreground mb-4">
@@ -82,33 +97,28 @@ const WellbeingDashboard = () => {
           </p>
         </div>
 
-        {/* Feature Grid/Horizontal Layout */}
-        <div className={
-          isChatExpanded 
-            ? "features-horizontal" 
-            : "features-grid"
-        }>
-          {features.map((feature, index) => (
-            <FeatureCard
-              key={index}
-              title={feature.title}
-              icon={feature.icon}
-              color={feature.color}
-              onClick={feature.onClick}
-              isCompact={isChatExpanded}
-            />
-          ))}
-        </div>
+          {/* Feature Grid Layout */}
+          <div className="features-grid">
+            {features.map((feature, index) => (
+              <FeatureCard
+                key={index}
+                title={feature.title}
+                icon={feature.icon}
+                color={feature.color}
+                onClick={feature.onClick}
+                isCompact={false}
+              />
+            ))}
+          </div>
 
-        {/* Additional Info */}
-        {!isChatExpanded && (
+          {/* Additional Info */}
           <div className="mt-16 text-center">
             <p className="text-muted-foreground">
               Click on any feature to get started, or chat with our AI assistant for personalized support.
             </p>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 };

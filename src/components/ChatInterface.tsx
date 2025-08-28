@@ -56,7 +56,7 @@ const ChatInterface = ({ isExpanded, onToggle }: ChatInterfaceProps) => {
   }
 
   return (
-    <div className="chat-container w-96 h-96 flex flex-col">
+    <div className="chat-container flex-1 flex flex-col h-full">
       <div className="flex items-center justify-between p-4 border-b border-border">
         <div className="flex items-center">
           <MessageCircle className="w-5 h-5 mr-2 text-primary" />
